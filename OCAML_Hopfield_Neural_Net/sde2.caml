@@ -1,0 +1,39 @@
+(*Functions for ANN*)
+
+(*Recursively adds items in each list that are multiplied together*)
+let rec netUnit = function (inputs,weights) -> 
+        if((inputs == []) && (weights == [])) then 0.0
+        else List.hd(inputs) *. List.hd(weights) +. netUnit(List.tl(inputs),List.tl(weights));;
+
+(*Preforms netUnit to a list of vectors*)
+let rec netAll = function (state,weightMatrix) ->
+        if(weightMatrix == []) then [] 
+        else netUnit(state, List.hd(weightMatrix))::netAll(state, List.tl(weightMatrix));;
+
+(*Activates based on criteria provided*)
+let rec hop11Activation = function (net, oldo) ->
+        if(net > 0.0) then 1.0
+        else
+           if(net == 0.0) then oldo
+           else -1.0;;
+
+(*Recursive helper function for nextState, does all the dirty work of activating each part of the matrix*)
+let rec nextStateHelp = function (currentState, weightMatrix) ->
+	if(weightMatrix == []) then []
+	else hop11Activation(List.hd(netAll(currentState, weightMatrix)), List.hd(currentState))::nextStateHelp(currentState, List.tl(weightMatrix));;
+
+
+let rec nextState = function(currentState, weightMatrix) ->
+	nextStateHelp(currentState, weightMatrix);;
+
+(*returns the state after n time steps, uses nextState function in conjunction with recursion to achieve this*)
+let rec updateN = function(currentState, weightMatrix, n) -> 
+	if(n == 1) then nextState(currentState, weightMatrix)
+	else updateN(nextState(currentState, weightMatrix), weightMatrix, n-1);;
+
+
+(*let rec hopTrainAState = function(astate) ->*)
+	 
+
+(*let rec hopTrain = function(allstates) -> *)
+

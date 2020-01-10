@@ -1,0 +1,71 @@
+(* NOTE: This log file contains test examples of each function, and demonstrates expected behaviors. *)
+
+jpuglie@ullab03:~/ece3520/pugliese-sde2$ ledit ocaml
+        OCaml version 4.01.0
+
+# #use"sde2.caml";;
+val netUnit : float list * float list -> float = <fun>
+val netAll : float list * float list list -> float list = <fun>
+val hop11Activation : float * float -> float = <fun>
+val nextStateHelp : float list * float list list -> float list = <fun>
+val nextState : float list * float list list -> float list = <fun>
+val updateN : float list * float list list * int -> float list = <fun>
+
+(* netUnit function testing examples *)
+# netUnit([-1.;1.;1.;-1.],[1.;0.;2.;0.]);;
+- : float = 1.
+# netUnit([1.;1.;1.;1.],[1.;0.;2.;0.]);;  
+- : float = 3.
+# netUnit([1.;1.;1.;1.],[1.;0.;2.;3.]);;
+- : float = 6.
+
+(* intialization of variables for testing on multiple functions *)
+# let w = [[0.;1.;-1.;-1.];[1.;0.;-1.;-1.];[-1.;-1.;0.;1.];[-1.;-1.;1.;0.]];;
+val w : float list list =
+  [[0.; 1.; -1.; -1.]; [1.; 0.; -1.; -1.]; [-1.; -1.; 0.; 1.];
+   [-1.; -1.; 1.; 0.]]
+# let os = [-1.;-1.;1.;1.];;
+val os : float list = [-1.; -1.; 1.; 1.]
+# let os2 = [1.;-1.;-1.;1.];;
+val os2 : float list = [1.; -1.; -1.; 1.]
+
+(* netAll function testing examples *)
+# netAll(os,w);;             
+- : float list = [-3.; -3.; 3.; 3.]
+# netAll(os2,w);;
+- : float list = [-1.; 1.; 1.; -1.]
+# 
+
+(* hop11Activation function testing examples *)
+# hop11Activation(4.,1.);;
+- : float = 1.
+# hop11Activation(-4.,1.);;
+- : float = -1.
+# hop11Activation(-1.,1.);;
+- : float = -1.
+#       
+
+(* nextState function testing examples *)
+# nextState(os,w);;        
+- : float list = [-1.; -1.; 1.; 1.]
+# nextState(os2,w);;
+- : float list = [-1.; 1.; 1.; -1.]
+# nextState(nextState(os2,w),w);;
+- : float list = [1.; -1.; -1.; 1.]
+
+(* updateN function testing examples. Note: for some reason when I was creating my own tests I kept recieving a tl error however,
+   I was unable to replicate the error with any example provided, so I concluded that the error was in producing testing examples *)
+
+# let we = [[0.0;-1.0];[-1.0;0.0]];;
+val we : float list list = [[0.; -1.]; [-1.; 0.]]
+# let oi = [-1.0;-1.0];;
+val oi : float list = [-1.; -1.]
+# updateN(oi,we,6);;
+- : float list = [-1.; -1.]
+# updateN(oi,we,5);;
+- : float list = [1.; 1.]
+
+           
+
+
+

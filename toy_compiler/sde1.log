@@ -1,0 +1,53 @@
+
+/**********************************************/
+
+Below are the results from 10 different
+examples of successful and unsuccessful parses
+
+/**********************************************/
+
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <cdabe 
+
+>>>> CONTEXTUAL parsing of string <<<<
+syntax error
+Sorry, Charlie, input string not in L(G)
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <aabee 
+
+>>>> CONTEXTUAL parsing of string <<<<
+syntax error
+Sorry, Charlie, input string not in L(G)
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <aaabccddeee 
+
+>>>> CONTEXTUAL parsing of string <<<<
+****** congratulations; parse successful ******
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <eeeeddcccbaa 
+
+>>>> CONTEXTUAL parsing of string <<<<
+****** congratulations; parse successful ******
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <abcd
+
+>>>> CONTEXTUAL parsing of string <<<<
+syntax error
+Sorry, Charlie, input string not in L(G)
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <abtcde
+
+>>>> CONTEXTUAL parsing of string <<<<
+syntax error
+Sorry, Charlie, input string not in L(G)
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <eeddzcccba
+
+>>>> CONTEXTUAL parsing of string <<<<
+syntax error
+Sorry, Charlie, input string not in L(G)
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <edcba
+
+>>>> CONTEXTUAL parsing of string <<<<
+Sorry, Charlie, input string not in L(G)
+jpuglie@ullab05:~/ece3520/SDE1$  
+
+jpuglie@ullab05:~/ece3520/SDE1$ ./sde1 <eedd_sp_cccba 
+
+>>>> CONTEXTUAL parsing of string <<<<
+syntax error
+Sorry, Charlie, input string not in L(G)
+jpuglie@ullab05:~/ece3520/SDE1$ 

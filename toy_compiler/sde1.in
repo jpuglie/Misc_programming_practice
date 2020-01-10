@@ -1,0 +1,14 @@
+%{
+#include <stdio.h>
+#include "sde1.tab.h"
+%}
+%option nounput
+%option noinput
+%%
+a return A;
+b return B;
+c return C;
+d return D;
+e return E;
+[^a-e]* return NEG;
+%%
